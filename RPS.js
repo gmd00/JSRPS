@@ -28,5 +28,46 @@ function getHumanChoice()
 
 let PS = 0;
 let CS = 0;
-console.log(getHumanChoice());
 
+function playRound(humanChoice, computerChoice)
+{
+    const OPS = PS;
+    if (humanChoice === computerChoice)
+    {
+        console.log("It is a draw")
+        return 1; 
+    }
+    else if (humanChoice === "paper")
+    {
+        if (computerChoice === "scissors")
+            CS = CS + 1;
+        else 
+            PS = PS + 1 
+    }
+    else if (humanChoice === 'rock')
+    {
+        if (computerChoice === 'paper')
+            CS = CS + 1;
+        else
+            PS = PS + 1
+    }
+    else 
+    {
+        if (computerChoice === 'rock')
+            CS = CS + 1
+        else 
+            PS = PS + 1;
+
+    }
+
+    if (OPS > PS)
+    {
+      const msg = "You win !!!" +humanChoice + " beats "+ computerChoice;
+    }
+    else
+    {
+        const msg = "You lose...+" + humanChoice + " loses to" + computerChoice;
+    }
+    console.log(msg)
+    return 1;
+}
