@@ -21,20 +21,29 @@ function getHumanChoice()
     else if (uselet === "S" ||uselet === "s")
         return "scissors"
 
-    else 
+    else if (uselet === "p" ||uselet === "P")
         return "paper"
+    else {
+        console.log("Please try again with a valid input from R, p or s.")
+       return getHumanChoice();
+    }
 
 }
 
 let PS = 0;
 let CS = 0;
+let draws = 0;
 
 function playRound(humanChoice, computerChoice)
 {
     const OPS = PS;
     if (humanChoice === computerChoice)
     {
+        draws = draws + 1;
         console.log("It is a draw")
+            console.log(CS)
+    console.log(PS)
+
         return 1; 
     }
     else if (humanChoice === "paper")
@@ -59,15 +68,34 @@ function playRound(humanChoice, computerChoice)
             PS = PS + 1;
 
     }
+    let msg =""
 
-    if (OPS > PS)
+    if (OPS < PS)
     {
-      const msg = "You win !!!" +humanChoice + " beats "+ computerChoice;
+        msg = "You win," + humanChoice + " beats "+ computerChoice;
     }
     else
     {
-        const msg = "You lose...+" + humanChoice + " loses to" + computerChoice;
+        msg = "You lose " + humanChoice + " loses to " + computerChoice;
     }
     console.log(msg)
+    console.log(CS)
+    console.log(PS)
     return 1;
 }
+
+function playGame (){
+    for ( let i = 0; i < 5 ; i++)
+    {
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);   
+     }
+    if (PS === CS)
+        console.log("Its a draw. Player -"+ PS +" Computer -"+CS)
+    else if (PS > CS)
+                console.log("Winner Winner Chicken Dinner. Player -"+ PS +" Computer -"+CS)
+    else                console.log("You lose gg. Player: "+ PS +" Computer: "+CS +" Ties: " + draws)
+return 1;
+}
+playGame()
